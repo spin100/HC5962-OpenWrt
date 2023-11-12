@@ -234,24 +234,25 @@ jobs:
         #./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         #echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         #echo "::set-env name=COWTRANSFER_URL::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
-    # 上传固件到奶牛快传  
-   # - name: 上传固件到奶牛快传  
-    #  if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()   
-     # run: |  
-     #  curl -fsSL git.io/file-transfer | sh  
-      # ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log  
-       #echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"  
-      # echo "COWTRANSFER_URL=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV
+    - name: 上传固件到奶牛文件
+      if: env.UPLOAD_COWTRANSFER == 'true'
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        cowurl=$(./transfer cow --block 2621440 -s --no-progress ${FIRMWARE})
+        COWTRANSFER_URL=$(echo $cowurl | grep -o -E "https[^ ]*")
+        #echo "COWURL=$COWTRANSFER_URL" >> $GITHUB_ENV
+        #echo "Download Link: ${{ env.EMOJI }} $cowurl ${{ env.EMOJI }} 🚀"
+
       
-    - name: 上传固件到奶牛快传    
-      if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()     
-      run: |    
-       curl -fsSL git.io/file-transfer | sh    
-       ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log    
-       echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"  
-           # 输出 cowtransfer.log 文件的内容 
-       cat cowtransfer.log  
-       echo "COWTRANSFER_URL=$(cat cowtransfer.log | grep https | awk '{print $NF}')" >> $GITHUB_ENV
+   # - name: 上传固件到奶牛快传    
+    #  if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()     
+    #  run: |    
+    #   curl -fsSL git.io/file-transfer | sh    
+    #   ./transfer cow --block 2621440 -s -p 99 -t 3 --hash --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log    
+     #  echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"  
+      #     # 输出 cowtransfer.log 文件的内容 
+      # cat cowtransfer.log  
+      # echo "COWTRANSFER_URL=$(cat cowtransfer.log | grep https | awk '{print $NF}')" >> $GITHUB_ENV
             
     # 上传固件到WeTransfer
     #- name: 上传固件到WeTransfer
