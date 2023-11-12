@@ -20,7 +20,7 @@ sed -i 's/none/psk2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i '/set wireless.radio${devidx}.hwmode=11/a\\t\t\tset wireless.radio${devidx}.country=CN\n\t\t\tset wireless.radio${devidx}.legacy_rates=1\n\t\t\tset wireless.radio${devidx}.mu_beamformer=1' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 sed -i '/set wireless.default_radio${devidx}.encryption=psk2/a\\t\t\tset wireless.default_radio${devidx}.key=password\n\t\t\tset wireless.default_radio${devidx}.ieee80211k=1' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 # ---------------------------------------------------------------------------增加自定义配置----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-svn co https://github.com/danxiaonuo/AutoBuild-OpenWrt/trunk/server/default-settings package/danxiaonuo/default-settings
+svn co https://github.com/spin100/HC5962-OpenWrt/tree/master/server/default-settings package/danxiaonuo/default-settings
 # 增加IPV6
 curl -fsSL https://raw.githubusercontent.com/danxiaonuo/AutoBuild-OpenWrt/master/server/etc/99-ipv6 > package/base-files/files/etc/hotplug.d/99-ipv6
 sed -i '/exit 0/i\mv /etc/hotplug.d/99-ipv6 /etc/hotplug.d/iface/99-ipv6' package/danxiaonuo/default-settings/files/zzz-default-settings
