@@ -40,6 +40,6 @@ curl -fsSL https://raw.githubusercontent.com/danxiaonuo/AutoBuild-OpenWrt/master
 curl -fsSL https://raw.githubusercontent.com/danxiaonuo/AutoBuild-OpenWrt/master/server/smartdns/smartdns.conf > package/base-files/files/etc/smartdns.conf
 sed -i '/exit 0/i\# 修改smartdns配置\nmv /etc/newsmartdns /etc/config/smartdns\nmv /etc/smartdns.conf /var/etc/smartdns/smartdns.conf' package/lean/default-settings/files/zzz-default-settings
 # 修改系统欢迎词
-curl -fsSL https://raw.githubusercontent.com/danxiaonuo/AutoBuild-OpenWrt/master/server/etc/banner > package/base-files/files/etc/banner
+curl -fsSL https://raw.githubusercontent.com/spin100/HC5962-OpenWrt/master/server/etc/banner > package/base-files/files/etc/banner
 # 修改系统内核参数
 curl -fsSL https://raw.githubusercontent.com/danxiaonuo/AutoBuild-OpenWrt/master/server/etc/sysctl.conf > package/base-files/files/etc/sysctl.conf
