@@ -27,7 +27,7 @@ env:
    # 自定义.config文件名
    CONFIG_FILE: config/Hiwifi_Hc5962-openwrt.config
    # 自定义执行脚本名称
-   DIY_P1_SH: scripts/lean-extra-openwrt.sh     #common-extra-openwrt.sh
+   DIY_P1_SH: scripts/common-extra-openwrt.sh     #lean-extra-openwrt.sh  common-extra-openwrt.sh
    DIY_P2_SH: scripts/lean-plugin-openwrt.sh
    # 时区设置
    TZ: Asia/Shanghai
