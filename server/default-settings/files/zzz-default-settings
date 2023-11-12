@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # 修改root密码
-password=$(openssl passwd -1 'admin')
+password=$(openssl passwd -1 'adminadmin')
 sed -i "s|root::0:0:99999:7:::|root:$password:0:0:99999:7:::|g" /etc/shadow
 sed -i 's|root:x:0:0:root:/root:/bin/ash|root:x:0:0:root:/root:/bin/bash|g' /etc/passwd
 # 设置主机名称
@@ -10,7 +10,7 @@ sed -i 's/OpenWrt/List/g' /bin/config_generate
 sed -i 's/UTC/CST-8/g' /bin/config_generate
 # 修改默认登陆IP地址
 sed -i 's/192.168.1.1/192.168.199.1/g' /bin/config_generate
-sed -i 's/192.168/10.8/g' /bin/config_generate
+#sed -i 's/192.168/10.8/g' /bin/config_generate
 
 # 增加 SSID 2.5G
 sed -i '/channel="11"/a\\t\tssid="HiWIFI-2HZ"' /lib/wifi/mac80211.sh
@@ -33,7 +33,7 @@ uci commit luci
 
 uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
-uci set system.@system[0].hostname=danxiaonuo
+uci set system.@system[0].hostname=神奇的List
 uci commit system
 
 # 设置默认管理IP地址
